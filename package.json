@@ -1,0 +1,51 @@
+{
+  "name": "employee-list-app",
+  "version": "0.0.1",
+  "description": "Employee List App",
+  "main": "''",
+  "author": "atumv",
+  "license": "ISC",
+  "scripts": {
+    "lint": "eslint src --ext .js --ext .jsx",
+    "lint:fix": "eslint src --ext .js --ext .jsx --fix",
+    "start": "run-p api dev",
+    "api": "json-server --watch server/api/db.json --routes routes.json",
+    "dev": "webpack serve --mode development --config config/webpack.dev.js"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "es6-promise": "^4.2.8",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-toastify": "^7.0.4",
+    "whatwg-fetch": "^3.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.16",
+    "@babel/plugin-transform-runtime": "^7.14.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.5",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-polyfill": "^6.26.0",
+    "css-loader": "^5.2.4",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.21.5",
+    "html-webpack-plugin": "^5.3.1",
+    "json-server": "^0.16.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.35.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.7.3"
+  }
+}
