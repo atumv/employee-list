@@ -1,7 +1,7 @@
 {
-  "name": "employee-list-app",
+  "name": "employee-list",
   "version": "0.0.1",
-  "description": "Employee List App",
+  "description": "Employee list application",
   "main": "''",
   "author": "atumv",
   "license": "ISC",
