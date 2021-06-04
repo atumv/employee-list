@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./styles/style.css";
 import { ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import getData from "./utils/getData";
 import Table from "./components/Table";
 import AddBtn from "./components/AddBtn";
 import AddPerson from "./components/AddPerson";
@@ -17,9 +16,14 @@ const EmployeeList = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
 
-  useEffect(async () => {
-    const data = await getData(`${apiUrl}/persons/`);
+  const getPersons = async (url) => {
+    const response = await fetch(url);
+    const data = await response.json();
     setPersons(data);
+  };
+
+  useEffect(() => {
+    getPersons(`${apiUrl}/persons/`);
   }, []);
 
   return (
@@ -28,29 +32,29 @@ const EmployeeList = () => {
         <Table
           apiUrl={apiUrl}
           persons={persons}
-          setPersons={setPersons}
           setPersonId={setPersonId}
           setPersonFirstName={setPersonFirstName}
           setPersonLastName={setPersonLastName}
           setShowEditModal={setShowEditModal}
+          getPersons={getPersons}
         />
       ) : null}
       <AddBtn setShowAddModal={setShowAddModal} />
       {showAddModal && (
         <AddPerson
           apiUrl={apiUrl}
-          setPersons={setPersons}
           setShowAddModal={setShowAddModal}
+          getPersons={getPersons}
         />
       )}
       {showEditModal && (
         <EditPerson
           apiUrl={apiUrl}
-          setPersons={setPersons}
           id={personId}
           firstName={personFirstName}
           lastName={personLastName}
           setShowEditModal={setShowEditModal}
+          getPersons={getPersons}
         />
       )}
       <ToastContainer transition={Flip} autoClose={3000} hideProgressBar />

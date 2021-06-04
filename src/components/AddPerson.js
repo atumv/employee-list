@@ -1,8 +1,7 @@
 import React, { createRef, useEffect } from "react";
 import { toast } from "react-toastify";
-import getData from "../utils/getData";
 
-const AddPerson = ({ apiUrl, setShowAddModal, setPersons }) => {
+const AddPerson = ({ apiUrl, setShowAddModal, getPersons }) => {
   const firstNameInput = createRef();
 
   useEffect(() => {
@@ -42,8 +41,7 @@ const AddPerson = ({ apiUrl, setShowAddModal, setPersons }) => {
       toast.error("Ошибка сервера. Попробуйте позже.");
     }
 
-    const data = await getData(`${apiUrl}/persons/`);
-    setPersons(data);
+    getPersons(`${apiUrl}/persons/`);
     setShowAddModal(false);
   };
 

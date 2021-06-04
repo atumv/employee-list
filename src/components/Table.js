@@ -1,15 +1,14 @@
 import React from "react";
 import { toast } from "react-toastify";
-import getData from "../utils/getData";
 
 const Table = ({
   apiUrl,
   persons,
-  setPersons,
   setShowEditModal,
   setPersonId,
   setPersonFirstName,
   setPersonLastName,
+  getPersons,
 }) => {
   const removePerson = async (id) => {
     const fetchOptions = {
@@ -28,8 +27,7 @@ const Table = ({
       toast.error("Ошибка сервера. Попробуйте позже.");
     }
 
-    const data = await getData(`${apiUrl}/persons/`);
-    setPersons(data);
+    getPersons(`${apiUrl}/persons/`);
   };
 
   return (

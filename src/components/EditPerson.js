@@ -1,6 +1,5 @@
 import React, { createRef, useEffect } from "react";
 import { toast } from "react-toastify";
-import getData from "../utils/getData";
 
 const EditPerson = ({
   id,
@@ -8,7 +7,7 @@ const EditPerson = ({
   lastName,
   apiUrl,
   setShowEditModal,
-  setPersons,
+  getPersons,
 }) => {
   const firstNameInput = createRef();
 
@@ -47,8 +46,7 @@ const EditPerson = ({
       toast.error("Ошибка сервера. Попробуйте позже.");
     }
 
-    const data = await getData(`${apiUrl}/persons/`);
-    setPersons(data);
+    getPersons(`${apiUrl}/persons/`);
     setShowEditModal(false);
   };
 
