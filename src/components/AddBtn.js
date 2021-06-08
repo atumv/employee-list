@@ -1,11 +1,7 @@
 import React from "react";
 
-const AddBtn = ({ setShowAddModal }) => (
-  <button
-    className="add-btn"
-    type="button"
-    onClick={() => setShowAddModal(true)}
-  >
+const AddBtn = ({ displayAddModal }) => (
+  <button className="add-btn" type="button" onClick={displayAddModal}>
     + Добавить сотрудника
   </button>
 );

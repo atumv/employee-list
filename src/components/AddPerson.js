@@ -1,7 +1,7 @@
 import React, { createRef, useEffect } from "react";
 import { toast } from "react-toastify";
 
-const AddPerson = ({ apiUrl, setShowAddModal, getPersons }) => {
+const AddPerson = ({ apiUrl, closeAddModal, getPersons }) => {
   const firstNameInput = createRef();
 
   useEffect(() => {
@@ -42,18 +42,18 @@ const AddPerson = ({ apiUrl, setShowAddModal, getPersons }) => {
     }
 
     getPersons(`${apiUrl}/persons/`);
-    setShowAddModal(false);
+    closeAddModal();
   };
 
   return (
     <div className="modal">
       <div className="modal-fade" />
       <div className="modal-window">
-        <form className="form" onSubmit={(e) => AddNewPerson(e)}>
+        <form className="form" onSubmit={AddNewPerson}>
           <button
             className="form-close-btn"
             type="button"
-            onClick={() => setShowAddModal(false)}
+            onClick={closeAddModal}
           >
             &times;
           </button>

@@ -6,7 +6,7 @@ const EditPerson = ({
   firstName,
   lastName,
   apiUrl,
-  setShowEditModal,
+  closeEditModal,
   getPersons,
 }) => {
   const firstNameInput = createRef();
@@ -47,18 +47,18 @@ const EditPerson = ({
     }
 
     getPersons(`${apiUrl}/persons/`);
-    setShowEditModal(false);
+    closeEditModal();
   };
 
   return (
     <div className="modal">
       <div className="modal-fade" />
       <div className="modal-window">
-        <form className="form" onSubmit={(e) => changeName(e)}>
+        <form className="form" onSubmit={changeName}>
           <button
             className="form-close-btn"
             type="button"
-            onClick={() => setShowEditModal(false)}
+            onClick={closeEditModal}
           >
             &times;
           </button>

@@ -26,35 +26,40 @@ const EmployeeList = () => {
     getPersons(`${apiUrl}/persons/`);
   }, []);
 
+  const displayAddModal = () => setShowAddModal(true);
+  const displayEditModal = () => setShowEditModal(true);
+  const closeAddModal = () => setShowAddModal(false);
+  const closeEditModal = () => setShowEditModal(false);
+
   return (
     <div className="app-container">
       {persons.length ? (
         <Table
           apiUrl={apiUrl}
           persons={persons}
+          getPersons={getPersons}
           setPersonId={setPersonId}
           setPersonFirstName={setPersonFirstName}
           setPersonLastName={setPersonLastName}
-          setShowEditModal={setShowEditModal}
-          getPersons={getPersons}
+          displayEditModal={displayEditModal}
         />
       ) : null}
-      <AddBtn setShowAddModal={setShowAddModal} />
+      <AddBtn displayAddModal={displayAddModal} />
       {showAddModal && (
         <AddPerson
           apiUrl={apiUrl}
-          setShowAddModal={setShowAddModal}
           getPersons={getPersons}
+          closeAddModal={closeAddModal}
         />
       )}
       {showEditModal && (
         <EditPerson
           apiUrl={apiUrl}
+          getPersons={getPersons}
           id={personId}
           firstName={personFirstName}
           lastName={personLastName}
-          setShowEditModal={setShowEditModal}
-          getPersons={getPersons}
+          closeEditModal={closeEditModal}
         />
       )}
       <ToastContainer transition={Flip} autoClose={3000} hideProgressBar />

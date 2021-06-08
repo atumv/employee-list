@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 const Table = ({
   apiUrl,
   persons,
-  setShowEditModal,
+  displayEditModal,
   setPersonId,
   setPersonFirstName,
   setPersonLastName,
@@ -30,14 +30,21 @@ const Table = ({
     getPersons(`${apiUrl}/persons/`);
   };
 
+  const editBtnHandler = (id, firstName, lastName) => {
+    displayEditModal();
+    setPersonId(id);
+    setPersonFirstName(firstName);
+    setPersonLastName(lastName);
+  };
+
   return (
     <table className="table">
       <thead className="table-header">
         <tr>
           <th>Имя</th>
           <th>Фамилия</th>
-          <th />
-          <th />
+          <th aria-label="empty" />
+          <th aria-label="empty" />
         </tr>
       </thead>
       <tbody>
@@ -49,12 +56,9 @@ const Table = ({
               <button
                 className="edit-btn"
                 type="button"
-                onClick={() => {
-                  setShowEditModal(true);
-                  setPersonId(person.id);
-                  setPersonFirstName(person.firstName);
-                  setPersonLastName(person.lastName);
-                }}
+                onClick={() =>
+                  editBtnHandler(person.id, person.firstName, person.lastName)
+                }
               >
                 ✎
               </button>
