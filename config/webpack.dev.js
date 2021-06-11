@@ -6,11 +6,11 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    port: 9000,
 	  open: true,
+    port: 9000,
 	  hot: true,
 	  compress: true,
     historyApiFallback: true,
-    contentBase: paths.build
+    static: paths.build
   }
 });

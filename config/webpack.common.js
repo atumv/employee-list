@@ -1,16 +1,24 @@
 const paths = require('./paths');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-require("es6-promise").polyfill();
 
 module.exports = {
-  entry: ["whatwg-fetch", "@babel/polyfill", `${paths.src}/index.js`],
+  entry: {
+    entry: [
+      'whatwg-fetch',
+      'core-js/features/promise',
+      'core-js/stable/object/assign',
+      `${paths.src}/index.js`
+    ],
+  },
   
   output: {
     path: paths.build,
     filename: 'bundle.js',
     publicPath: ''
   },
+  
   target: ['web', 'es5'],
+  
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
