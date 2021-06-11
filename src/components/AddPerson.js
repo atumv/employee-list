@@ -14,6 +14,10 @@ const AddPerson = ({ apiUrl, closeAddModal, getPersons }) => {
     const firstNameInputValue = e.target.elements.firstName.value.trim();
     const lastNameInputValue = e.target.elements.lastName.value.trim();
 
+    if (firstNameInputValue.length === 0 || lastNameInputValue.length === 0) {
+      closeAddModal();
+    }
+
     if (firstNameInputValue.length > 0 && lastNameInputValue.length > 0) {
       const fetchOptions = {
         method: "POST",
@@ -43,10 +47,6 @@ const AddPerson = ({ apiUrl, closeAddModal, getPersons }) => {
       }
 
       getPersons(`${apiUrl}/persons/`);
-      closeAddModal();
-    }
-
-    if (firstNameInputValue.length === 0 || lastNameInputValue.length === 0) {
       closeAddModal();
     }
   };

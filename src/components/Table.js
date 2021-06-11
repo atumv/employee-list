@@ -11,11 +11,9 @@ const Table = ({
   getPersons,
 }) => {
   const removePerson = async (id) => {
-    const fetchOptions = {
+    const response = await fetch(`${apiUrl}/person/${id}`, {
       method: "DELETE",
-    };
-
-    const response = await fetch(`${apiUrl}/person/${id}`, fetchOptions);
+    });
 
     if (response.status === 200) {
       toast.success("Сотрудник удален из списка.");

@@ -21,6 +21,10 @@ const EditPerson = ({
     const firstNameInputValue = e.target.elements.firstName.value.trim();
     const lastNameInputValue = e.target.elements.lastName.value.trim();
 
+    if (firstNameInputValue.length === 0 || lastNameInputValue.length === 0) {
+      closeEditModal();
+    }
+
     if (firstNameInputValue.length > 0 && lastNameInputValue.length > 0) {
       const fetchOptions = {
         method: "PUT",
@@ -48,10 +52,6 @@ const EditPerson = ({
       }
 
       getPersons(`${apiUrl}/persons/`);
-      closeEditModal();
-    }
-
-    if (firstNameInputValue.length === 0 || lastNameInputValue.length === 0) {
       closeEditModal();
     }
   };
