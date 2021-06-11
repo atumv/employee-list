@@ -8,48 +8,54 @@ const AddPerson = ({ apiUrl, closeAddModal, getPersons }) => {
     firstNameInput.current.focus();
   });
 
-  const AddNewPerson = async (e) => {
+  const addPerson = async (e) => {
     e.preventDefault();
 
     const firstNameInputValue = e.target.elements.firstName.value.trim();
     const lastNameInputValue = e.target.elements.lastName.value.trim();
 
-    const fetchOptions = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: Date.now(),
-        firstName: firstNameInputValue,
-        lastName: lastNameInputValue,
-      }),
-    };
+    if (firstNameInputValue.length > 0 && lastNameInputValue.length > 0) {
+      const fetchOptions = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: Date.now(),
+          firstName: firstNameInputValue,
+          lastName: lastNameInputValue,
+        }),
+      };
 
-    const response = await fetch(`${apiUrl}/person/`, fetchOptions);
+      const response = await fetch(`${apiUrl}/person/`, fetchOptions);
 
-    if (response.status === 200) {
-      toast.success("Сотрудник добавлен в список.");
-    } else if (response.status === 201) {
-      toast.success("Сотрудник добавлен в список.");
-    } else if (response.status === 400) {
-      toast.error("Неверный запрос.");
-    } else if (response.status === 404) {
-      toast.error("Сотрудник не найден.");
-    } else if (response.status === 500) {
-      toast.error("Ошибка сервера. Попробуйте позже.");
+      if (response.status === 200) {
+        toast.success("Сотрудник добавлен в список.");
+      } else if (response.status === 201) {
+        toast.success("Сотрудник добавлен в список.");
+      } else if (response.status === 400) {
+        toast.error("Неверный запрос.");
+      } else if (response.status === 404) {
+        toast.error("Сотрудник не найден.");
+      } else if (response.status === 500) {
+        toast.error("Ошибка сервера. Попробуйте позже.");
+      }
+
+      getPersons(`${apiUrl}/persons/`);
+      closeAddModal();
     }
 
-    getPersons(`${apiUrl}/persons/`);
-    closeAddModal();
+    if (firstNameInputValue.length === 0 || lastNameInputValue.length === 0) {
+      closeAddModal();
+    }
   };
 
   return (
     <div className="modal">
       <div className="modal-fade" />
       <div className="modal-window">
-        <form className="form" onSubmit={AddNewPerson}>
+        <form className="form" onSubmit={addPerson}>
           <button
             className="form-close-btn"
             type="button"

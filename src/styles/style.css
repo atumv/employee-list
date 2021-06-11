@@ -45,6 +45,15 @@ body::before {
   text-align: center;
 }
 
+.firstname-cell, .lastname-cell {
+  width: 40%;
+  padding: 0.3rem;
+}
+
+.edit-btn-cell, .remove-btn-cell {
+  width: 10%;
+}
+
 tr, td {
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -73,10 +82,12 @@ button {
 .edit-btn {
   transform: rotateY(180deg);
   font-size: 1.1rem;
+  padding: 0 0.5rem;
 }
 
 .remove-btn {
   font-size: 1.5rem;
+  padding: 0 0.5rem;
 }
 
 .form {

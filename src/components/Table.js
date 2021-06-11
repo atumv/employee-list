@@ -50,9 +50,9 @@ const Table = ({
       <tbody>
         {persons.map((person) => (
           <tr key={person.id}>
-            <td>{person.firstName}</td>
-            <td>{person.lastName}</td>
-            <td>
+            <td className="firstname-cell">{person.firstName}</td>
+            <td className="lastname-cell">{person.lastName}</td>
+            <td className="edit-btn-cell">
               <button
                 className="edit-btn"
                 type="button"
@@ -63,7 +63,7 @@ const Table = ({
                 ✎
               </button>
             </td>
-            <td>
+            <td className="remove-btn-cell">
               <button
                 className="remove-btn"
                 type="button"

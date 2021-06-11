@@ -15,46 +15,52 @@ const EditPerson = ({
     firstNameInput.current.focus();
   });
 
-  const changeName = async (e) => {
+  const editPerson = async (e) => {
     e.preventDefault();
 
     const firstNameInputValue = e.target.elements.firstName.value.trim();
     const lastNameInputValue = e.target.elements.lastName.value.trim();
 
-    const fetchOptions = {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: null,
-        firstName: firstNameInputValue,
-        lastName: lastNameInputValue,
-      }),
-    };
+    if (firstNameInputValue.length > 0 && lastNameInputValue.length > 0) {
+      const fetchOptions = {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: null,
+          firstName: firstNameInputValue,
+          lastName: lastNameInputValue,
+        }),
+      };
 
-    const response = await fetch(`${apiUrl}/person/${id}`, fetchOptions);
+      const response = await fetch(`${apiUrl}/person/${id}`, fetchOptions);
 
-    if (response.status === 200) {
-      toast.success("Данные успешно изменены.");
-    } else if (response.status === 400) {
-      toast.error("Неверный запрос.");
-    } else if (response.status === 404) {
-      toast.error("Сотрудник не найден.");
-    } else if (response.status === 500) {
-      toast.error("Ошибка сервера. Попробуйте позже.");
+      if (response.status === 200) {
+        toast.success("Данные успешно изменены.");
+      } else if (response.status === 400) {
+        toast.error("Неверный запрос.");
+      } else if (response.status === 404) {
+        toast.error("Сотрудник не найден.");
+      } else if (response.status === 500) {
+        toast.error("Ошибка сервера. Попробуйте позже.");
+      }
+
+      getPersons(`${apiUrl}/persons/`);
+      closeEditModal();
     }
 
-    getPersons(`${apiUrl}/persons/`);
-    closeEditModal();
+    if (firstNameInputValue.length === 0 || lastNameInputValue.length === 0) {
+      closeEditModal();
+    }
   };
 
   return (
     <div className="modal">
       <div className="modal-fade" />
       <div className="modal-window">
-        <form className="form" onSubmit={changeName}>
+        <form className="form" onSubmit={editPerson}>
           <button
             className="form-close-btn"
             type="button"
