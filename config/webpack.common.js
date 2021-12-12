@@ -26,7 +26,7 @@ module.exports = {
         test: /\.(css)$/,
         use: [
           'style-loader',
-		      { loader: 'css-loader', options: { sourceMap: true, importLoaders: 1, url: false } },
+          { loader: 'css-loader', options: { sourceMap: true, importLoaders: 1, url: false } },
         ]
       }
     ]
@@ -34,13 +34,13 @@ module.exports = {
   
   plugins: [
     new HtmlWebpackPlugin({
-	    template: `${paths.public}/index.html`,
-	    inject: 'body'
-	  })
+      template: `${paths.public}/index.html`,
+      inject: 'body'
+    })
   ],
   
   resolve: {
-	  extensions: [".js", ".jsx", ".json"],
+    extensions: [".js", ".jsx", ".json"],
     modules: [paths.src, paths.modules]
   }
 };
