@@ -1,5 +1,7 @@
 # Employee List
 
+![example](/public/example.gif)
+
 A simple employee list application built using:
 
 - [`react`](https://www.npmjs.com/package/react)
