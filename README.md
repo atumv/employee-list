@@ -12,5 +12,5 @@ A simple employee list application built using:
 ## 🚀 One line start:
 
 ```sh
-git clone https://github.com/atumv/employee-list.git && cd employee-list && npm i && npm run start
+git clone https://github.com/atumv/employee-list.git && cd employee-list && npm i && npm start
 ```
