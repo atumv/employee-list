@@ -9,7 +9,7 @@ A simple employee list application built using:
 - [`json-server`](https://www.npmjs.com/package/json-server)
 - [`react-toastify`](https://www.npmjs.com/package/react-toastify)
 
-## 🚀 One line start:
+## 🚀 Quick start:
 
 ```sh
 git clone https://github.com/atumv/employee-list.git && cd employee-list && npm i && npm start
